@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
-                        @foreach ($tickets as $ticket)
+                        @forelse ($tickets as $ticket)
                         <tr>
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 sm:pl-6">
                                 {{$ticket->id}}
@@ -37,7 +37,9 @@
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $ticket->title}}</td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm">
-                                {{ $ticket->priority }} 
+                                <span class="bg-{{$ticket->priority->color()}}-600 px-2 rounded">
+                                    {{ $ticket->priority->description() }} 
+                                </span>
                             </td>
                             <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                 <div class="inline-block text-left" x-data="{ menu: false }">
@@ -72,17 +74,22 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>                            
-                        @endforeach
+                        </tr>      
+                        @empty
+                            <tr>
+                                <td class="px-6 py-4 text-center whitespace-nowrap text-sm font-medium text-gray-900" colspan="4">
+                                    No tickets found
+                                </td>
+                            </tr>                      
+                        @endforelse
                     </tbody>
                 </table>
-
-                <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-                    {{ $tickets->links() }}
-                </div>
-
+                @if ($tickets->hasPages())
+                    <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+                        {{ $tickets->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 </div>
