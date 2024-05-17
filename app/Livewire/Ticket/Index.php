@@ -4,7 +4,6 @@ namespace App\Livewire\Ticket;
 
 use App\Models\Ticket;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Index extends Component
 {
