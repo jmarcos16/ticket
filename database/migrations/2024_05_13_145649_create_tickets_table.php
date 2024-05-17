@@ -16,9 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->string('status')->default(TickerStatusEnum::PENDING);
-            $table->foreignIdFor(\App\Models\User::class, 'user_id')->constrained();
-            $table->foreignIdFor(\App\Models\User::class, 'assigned_user_id')->nullable()->constrained('users');
+            $table->string('priority');
             $table->timestamps();
         });
     }

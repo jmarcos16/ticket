@@ -10,7 +10,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.ticket.index', [
-            'tickets' => Ticket::all(),
+            'tickets' => Ticket::paginate(10),
         ]);
     }
 }
