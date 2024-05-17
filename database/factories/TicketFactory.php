@@ -12,8 +12,7 @@ class TicketFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),
-            'status' => fake()->randomElement(TickerStatusEnum::toArray()),
-            'user_id' => \App\Models\User::factory(),
+            'priority' => fake()->randomElement(['low', 'medium', 'high']),
         ];
     }
 }
